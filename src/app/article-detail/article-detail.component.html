@@ -1,0 +1,16 @@
+<div class="details">
+
+    <button class="btn btn-info" routerLink="">Retour</button>
+
+    <h3>Détails de l'article</h3>
+
+    <p>Titre : {{ article.title }}</p>
+    <p>Contenu : {{ article.body }}</p>
+    
+</div>
+<h4>Commentaires</h4>
+<div class="co" *ngFor="let comment of comments; let i = index"  >
+    <p> name : {{comment.name}}</p>
+    <p> email : {{comment.email}}</p>
+    <p> contenu : {{comment.body}}</p>
+</div>
