@@ -1,31 +1,62 @@
+
+<style>
+  .card-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.card {
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+</style>
+
+
+
 <!-- article-form.component.html -->
-<div class="container mt-4">
-  <h2>{{ articles ? 'Modifier' : 'Ajouter' }} un Article</h2>
-  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="title">Titre</label>
-      <input id="title" formControlName="title" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="body">Contenu</label>
-      <textarea id="body" formControlName="body" class="form-control" rows="5"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="articleForm.invalid">Enregistrer</button>
-  </form>
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="card shadow p-2" style="width: 60%">
+    <h2 class="text-center">{{ articles ? 'Modifier' : 'Ajouter' }} un Article</h2>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input id="title" formControlName="title" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="body">Contenu</label>
+        <textarea id="body" formControlName="body" class="form-control" rows="5"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="articleForm.invalid">Enregistrer</button>
+    </form>
+  </div>
 </div>
 
+<!-- Liste des articles -->
 <div class="container mt-3">
-  <div *ngFor="let article of articles; let i = index" class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-title">
-          <a routerLink="/article/{{ article.id }}" class="card-link">{{ article.title }}</a>
-      </h5>
-      <p class="card-text">{{ article.body }}</p>
-      <div class="d-flex justify-content-between">
-        <button class="btn btn-danger" (click)="supprimerArticle(article.id)">Supprimer</button>
-        <button (click)="editArticle(article)" class="btn btn-warning btn-sm">Modifier</button>
-        <button routerLink="/article/{{article.id}}" class="btn btn-info">Voir détails</button>
+  <div class="row">
+    <div *ngFor="let article of articles" class="col-md-4 mb-3">
+      <div class="card h-100 shadow d-flex flex-column">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            <a routerLink="/article/{{ article.id }}" class="card-link">{{ article.title }}</a>
+          </h5>
+          <p class="card-text flex-grow-1">{{ article.body }}</p>
+          <div class="d-flex justify-content-between mt-auto">
+            <button class="btn btn-danger btn-block" (click)="supprimerArticle(article.id)">Supprimer</button>
+            <button (click)="editArticle(article)" class="btn btn-warning btn-block btn-sm">Modifier</button>
+            <button routerLink="/article/{{article.id}}" class="btn btn-info btn-block">Voir détails</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
