@@ -7,7 +7,7 @@
       <input id="title" formControlName="title" class="form-control">
     </div>
     <div class="form-group">
-      <label for="body">Contenu</label> <!-- Changer de 'body' à 'body' -->
+      <label for="body">Contenu</label>
       <textarea id="body" formControlName="body" class="form-control" rows="5"></textarea>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="articleForm.invalid">Enregistrer</button>
@@ -18,11 +18,14 @@
   <div *ngFor="let article of articles; let i = index" class="card mb-3">
     <div class="card-body">
       <h5 class="card-title">
-          <a routerLink="/article/{{ article.id }}" class="card-link"> {{ article.title }}</a>
+          <a routerLink="/article/{{ article.id }}" class="card-link">{{ article.title }}</a>
       </h5>
       <p class="card-text">{{ article.body }}</p>
-      <button class="btn btn-danger" (click)="supprimerArticle(article.id)">Supprimer</button>
-      <button (click)="editArticle(article)" class="btn btn-warning btn-sm mr-2">Modifier</button>
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-danger" (click)="supprimerArticle(article.id)">Supprimer</button>
+        <button (click)="editArticle(article)" class="btn btn-warning btn-sm">Modifier</button>
+        <button routerLink="/article/{{article.id}}" class="btn btn-info">Voir détails</button>
+      </div>
     </div>
   </div>
 </div>

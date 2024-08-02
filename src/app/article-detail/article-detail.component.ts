@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink , Router, ActivatedRoute } from '@angular/router';
+import { Comment } from '../comment.model';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ArticleDetailComponent {
     private route: ActivatedRoute) { }
 
     article :any;
-    comments :any;
+    comments :Comment[] =[];
 
  ngOnInit(): void {
     this.route.params.subscribe(params => {

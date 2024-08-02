@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2'
-
+import { Article } from '../article.model';
 
 @Component({
  selector: 'app-article-list',
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2'
 })
 export class ArticleListComponent implements OnInit {
 articleForm: FormGroup;
- articles: any[] = [];
+ articles: Article[] = [];
 
  constructor(
   private articleService: ArticleService,
@@ -34,18 +34,19 @@ onSubmit() {
   if (article.id) {
     this.articleService.updatePost(article.id, article).subscribe(() => {
       const index = this.articles.findIndex((p) => p.id === article.id);
-      this.articles[index] = article;  // For demonstration, update locally
+      this.articles[index] = article  // For demonstration, update locally
       Swal.fire('Succès', 'Article modifié avec succès', 'success');
     });
   } else {
     this.articleService.createPost(article).subscribe(() => {
-      this.articles.unshift(article);  // For demonstration, prepend locally
+      this.articles.unshift(article)  // For demonstration, prepend locally
+      Swal.fire('Succès', 'Article ajouté avec succès', 'success')
     });
   }
   this.articleForm.reset();
 }
 
-editArticle(article:any){
+editArticle(article:Article){
   this.articleForm.patchValue(article)
 }
 

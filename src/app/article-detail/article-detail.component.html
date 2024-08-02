@@ -1,16 +1,21 @@
-<div class="details">
-
-    <button class="btn btn-info" routerLink="">Retour</button>
-
-    <h3>Détails de l'article</h3>
-
-    <p>Titre : {{ article.title }}</p>
-    <p>Contenu : {{ article.body }}</p>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <button class="btn btn-info" routerLink="">Retour</button>
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">Détails de l'article</h3>
+            <p class="card-text"><strong>Titre :</strong> {{ article.title }}</p>
+            <p class="card-text"><strong>Contenu :</strong> {{ article.body }}</p>
+        </div>
+    </div>
     
-</div>
-<h4>Commentaires</h4>
-<div class="co" *ngFor="let comment of comments; let i = index"  >
-    <p> name : {{comment.name}}</p>
-    <p> email : {{comment.email}}</p>
-    <p> contenu : {{comment.body}}</p>
+    <h4 class="mt-4">Commentaires</h4>
+    <div *ngFor="let comment of comments; let i = index" class="card mt-2">
+        <div class="card-body">
+            <p class="card-text"><strong>Nom :</strong> {{ comment.name }}</p>
+            <p class="card-text"><strong>Email :</strong> {{ comment.email }}</p>
+            <p class="card-text"><strong>Contenu :</strong> {{ comment.body }}</p>
+        </div>
+    </div>
 </div>
